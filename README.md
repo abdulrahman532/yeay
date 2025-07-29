@@ -1,108 +1,72 @@
-##🩺 AI Medical Assistant Chatbot
+````markdown
+# 🩺 Medical Assistant Chatbot
 
-An AI-powered medical chatbot that provides general health information by combining document retrieval (RAG) with a powerful LLM. It uses LangChain, FAISS, and Together.ai's LLaMA 3.3 70B to answer questions based on real medical documents like Where There Is No Doctor.
-🔧 Tech Stack
-Component	Tool/Library
-UI	Streamlit
-Backend	FastAPI
-Vector Search	LangChain + FAISS
-Embedding	Hugging Face: all-MiniLM-L6-v2
-LLM	Together AI: meta-llama/Llama-3.3-70B-Instruct
-Document	Where There Is No Doctor (PDF)
-✅ Features
+This is a simple AI-powered medical chatbot that uses retrieval-augmented generation (RAG) to answer user queries based on a medical reference document.
 
-    Ask health-related questions
+## 🚀 Features
 
-    Retrieves info from real medical books (RAG)
+- Chat interface with session-based chat history
+- Context-aware responses using FAISS vector store
+- Automatic chat title generation
+- Built with **Streamlit** and **FastAPI**
+- Embedding powered by `sentence-transformers/all-MiniLM-L6-v2`
+- RAG from the book *"Where There Is No Doctor"*
 
-    Auto-generates descriptive titles for each conversation
+## 🧠 Tech Stack
 
-    Stores and manages chat history per session
+- Python
+- Streamlit (frontend)
+- FastAPI (backend)
+- LangChain
+- HuggingFace Sentence Transformers
+- FAISS for vector storage
+- Together AI for LLM API access
 
-    Basic name memory for a more personal experience
+## 📂 Project Structure
 
-⚠️ Disclaimer
+- `main.py` — Streamlit app for user interaction
+- `api.py` — FastAPI backend that handles retrieval and LLM responses
+- `rag.py` — Preprocessing script to load PDF and build FAISS index
 
-    This app is not a replacement for medical professionals. It is for informational and educational purposes only.
+## ⚙️ Setup & Run
 
-🚀 Setup Instructions
-1. Clone the Repository
+1. **Install dependencies:**
 
-git clone https://github.com/yourusername/ai-medical-chatbot.git
-cd ai-medical-chatbot
+```bash
+pip install streamlit fastapi uvicorn langchain[all] sentence-transformers python-dotenv together
+````
 
-2. Create a Virtual Environment
+2. **Download the reference book (PDF):**
 
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+Place `14.DavidWerner-WhereThereIsNoDoctor.pdf` in the project directory.
 
-3. Install Requirements
+3. **Run `rag.py` to build the FAISS index:**
 
-pip install -r requirements.txt
-
-4. Prepare the FAISS Vector Index
-
-Put the Where There Is No Doctor PDF in the project directory and run:
-
+```bash
 python rag.py
+```
 
-This will create and save the FAISS index in ./faiss_index/.
-5. Set Environment Variables
+4. **Start the FastAPI backend:**
 
-Create a .env file in the root with your Together.ai key:
+```bash
+uvicorn api:app --reload
+```
 
-TOGETHER_API_KEY=your_together_api_key
+5. **Run the Streamlit frontend:**
 
-6. Run the Backend API (FastAPI)
+```bash
+streamlit run main.py
+```
 
-uvicorn backend:app --reload
+## ⚠️ Disclaimer
 
-Ensure your FastAPI backend is running on:
-📍 http://127.0.0.1:8000/llm/
-7. Run the Chat UI (Streamlit)
+This application is intended for **educational and reference purposes only**. It does **not** provide medical advice, diagnosis, or treatment.
 
-In another terminal:
+## 👥 Authors
 
-streamlit run app.py
+* \[Your Team Name or Members]
 
-📂 File Structure
 
-.
-├── app.py                  # Streamlit frontend
-├── backend.py              # FastAPI backend with LLM logic
-├── rag.py                  # Script to load/process the medical PDF and build FAISS index
-├── faiss_index/            # Saved FAISS index files
-├── 14.DavidWerner-WhereThereIsNoDoctor.pdf  # Source document
-├── requirements.txt
-└── .env                    # API keys (not committed)
 
-🧠 How It Works
-
-    User Input → via Streamlit
-
-    FastAPI backend receives query
-
-    FAISS searches for top 3 relevant chunks from medical PDF
-
-    Together AI LLaMA model receives prompt: retrieved context + user query
-
-    Answer is returned and stored in session with optional title
-
-🔒 Security Note
-
-Never expose your .env or API keys in public repos. Use .gitignore to exclude them:
-
-.env
-faiss_index/
-
-🙋‍♀️ Future Improvements
-
-Multi-user persistent chat storage
-
-Chat context memory
-
-More medical books / multilingual PDFs
-
-Live deployment (Render / HuggingFace Spaces / Docker)
-
-Voice input/output support
+```
+```
