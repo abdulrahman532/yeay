@@ -1,4 +1,4 @@
-🩺 AI Medical Assistant Chatbot
+##🩺 AI Medical Assistant Chatbot
 
 An AI-powered medical chatbot that provides general health information by combining document retrieval (RAG) with a powerful LLM. It uses LangChain, FAISS, and Together.ai's LLaMA 3.3 70B to answer questions based on real medical documents like Where There Is No Doctor.
 🔧 Tech Stack
@@ -95,9 +95,6 @@ Never expose your .env or API keys in public repos. Use .gitignore to exclude th
 .env
 faiss_index/
 
-📄 License
-
-This project is under the MIT License.
 🙋‍♀️ Future Improvements
 
 Multi-user persistent chat storage
@@ -108,6 +105,4 @@ More medical books / multilingual PDFs
 
 Live deployment (Render / HuggingFace Spaces / Docker)
 
-    Voice input/output support
-
-Let me know if you'd like me to generate a requirements.txt based on this code too.
+Voice input/output support
